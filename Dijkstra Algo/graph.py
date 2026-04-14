@@ -30,23 +30,25 @@ class Graph:
 
         # Adds value float("inf") to keys in distance adjacency list
         distance = {item: float("inf") for item in self.adjacency_list}
-        # The starting node value is set to 0
+        # Set distance of starting node to zero
         distance[start] = 0
         # Creates Previous adjacency list
         previous = {node: None for node in self.adjacency_list}
+       
         # Creating Priority Queue
         '''
         Use heapq.heappush() to add elements to queue
         Use heapq.heappop() to remove and return the smallest element
         '''
-        queue = [(0,start)] # Tuple contains node and distance
+        
+        queue = [(0,start)] # Tuple contains distance and name of node
 
         # While Queue is not empty
         while queue:
-            # Returns the minimum distance
+            # Pop and return unvisited node with smalled distance
             current_distance, current_node = heapq.heappop(queue)
 
-            # For loop node and weight from adjacency
+            
             for node, weight in self.adjacency_list[current_node].items():
                 new_distance = current_distance + weight
 
